@@ -6,13 +6,397 @@
     <title>MOOKZIE SWAPPER</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* [Previous CSS remains exactly the same] */
-        /* ... */
+        :root {
+            --black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #2a2a2a;
+            --light-gray: #3a3a3a;
+            --neon-green: #00ff4c;
+            --accent-blue: #00b4ff;
+            --rarity-common: #b0c3d9;
+            --rarity-uncommon: #5e9e2e;
+            --rarity-rare: #4b92db;
+            --rarity-epic: #ab48ee;
+            --rarity-legendary: #e8b730;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Oxanium', 'Rajdhani', sans-serif;
+        }
+        
+        body {
+            background-color: var(--black);
+            color: white;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Title Bar */
+        .title-bar {
+            height: 30px;
+            background-color: var(--dark-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        .title {
+            color: var(--neon-green);
+            font-weight: bold;
+        }
+        
+        .window-controls {
+            display: flex;
+        }
+        
+        .window-controls button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 5px 15px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .window-controls button:hover {
+            background-color: var(--medium-gray);
+        }
+        
+        /* Main App Container */
+        .app-container {
+            display: grid;
+            grid-template-columns: 250px 1fr 300px;
+            height: calc(100vh - 30px);
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background-color: var(--dark-gray);
+            border-right: 1px solid var(--medium-gray);
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .logo {
+            color: var(--neon-green);
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .category {
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: white;
+        }
+        
+        .category:hover {
+            background-color: var(--medium-gray);
+        }
+        
+        .category.active {
+            background-color: var(--neon-green);
+            color: black;
+            font-weight: bold;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 20px;
+            overflow-y: auto;
+            background-color: var(--black);
+        }
+        
+        .search-bar {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            background-color: var(--dark-gray);
+            border: 1px solid var(--medium-gray);
+            border-radius: 4px;
+            color: white;
+        }
+        
+        .search-bar i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--neon-green);
+        }
+        
+        .skin-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+        
+        .skin-card {
+            background-color: var(--dark-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--medium-gray);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .skin-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-green);
+            box-shadow: 0 5px 15px rgba(0, 255, 76, 0.2);
+        }
+        
+        .skin-image {
+            height: 120px;
+            background-color: var(--medium-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-green);
+            position: relative;
+        }
+        
+        .skin-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .skin-info {
+            padding: 10px;
+        }
+        
+        .skin-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: white;
+        }
+        
+        .skin-rarity {
+            font-size: 0.8rem;
+            text-transform: capitalize;
+        }
+        
+        /* Preview Panel */
+        .preview-panel {
+            background-color: var(--dark-gray);
+            border-left: 1px solid var(--medium-gray);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .preview-container {
+            flex-grow: 1;
+            background-color: var(--medium-gray);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--neon-green);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .preview-character {
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        .apply-btn {
+            background: linear-gradient(45deg, var(--neon-green), var(--accent-blue));
+            color: black;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+            margin-bottom: 10px;
+        }
+        
+        .apply-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 255, 76, 0.3);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--neon-green);
+            color: var(--neon-green);
+        }
+        
+        .preview-info {
+            margin-bottom: 20px;
+        }
+        
+        .preview-title {
+            color: var(--neon-green);
+            margin-bottom: 10px;
+        }
+        
+        /* Rarity Colors */
+        .common { color: var(--rarity-common); }
+        .uncommon { color: var(--rarity-uncommon); }
+        .rare { color: var(--rarity-rare); }
+        .epic { color: var(--rarity-epic); }
+        .legendary { color: var(--rarity-legendary); }
+        
+        /* Status Bar */
+        .status-bar {
+            background-color: var(--dark-gray);
+            border-top: 1px solid var(--medium-gray);
+            padding: 8px 20px;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: white;
+        }
+        
+        .status-item i {
+            color: var(--neon-green);
+        }
+        
+        /* Loading State */
+        .loading {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 40px;
+            color: var(--neon-green);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .app-container {
+                grid-template-columns: 200px 1fr 250px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .app-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr auto;
+            }
+            
+            .preview-panel {
+                border-left: none;
+                border-top: 1px solid var(--medium-gray);
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- [Previous HTML structure remains the same until skinGrid div] -->
-    <!-- ... -->
+    <!-- Title Bar -->
+    <div class="title-bar">
+        <div class="title">MOOKZIE SWAPPER</div>
+        <div class="window-controls">
+            <button id="minimize"><i class="fas fa-window-minimize"></i></button>
+            <button id="maximize"><i class="fas fa-window-maximize"></i></button>
+            <button id="close"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    
+    <!-- Main App Container -->
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">MOOKZIE SWAPPER</div>
+            <div class="category active">All Skins</div>
+            <div class="category">Outfits</div>
+            <div class="category">Backblings</div>
+            <div class="category">Pickaxes</div>
+            <div class="category">Gliders</div>
+            <div class="category">Emotes</div>
+            <div class="category">Wraps</div>
+            <div class="category">Recent</div>
+            <div class="category">Favorites</div>
+            
+            <div style="margin-top: 30px;">
+                <div class="category"><i class="fas fa-cog"></i> Settings</div>
+                <div class="category"><i class="fas fa-question-circle"></i> Help</div>
+                <div class="category"><i class="fas fa-info-circle"></i> About</div>
+            </div>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="search-bar">
+                <input type="text" placeholder="Search skins...">
+                <i class="fas fa-search"></i>
+            </div>
+            
+            <div class="skin-grid" id="skinGrid">
+                <!-- Skin cards will be loaded here by JavaScript -->
+            </div>
+        </div>
+        
+        <!-- Preview Panel -->
+        <div class="preview-panel">
+            <h3 class="preview-title">SKIN PREVIEW</h3>
+            <div class="preview-container">
+                <div class="preview-character" id="previewCharacter">
+                    <i class="fas fa-user-astronaut fa-5x"></i>
+                </div>
+            </div>
+            
+            <div class="preview-info">
+                <h4 class="preview-title">Selected Skin:</h4>
+                <p id="previewSkinName">None selected</p>
+                <p class="skin-rarity" id="previewSkinRarity">Select a skin to preview</p>
+            </div>
+            
+            <button class="apply-btn" id="applyBtn">APPLY SKIN</button>
+            <button class="apply-btn btn-outline" id="favoriteBtn">
+                <i class="far fa-heart"></i> FAVORITE
+            </button>
+        </div>
+    </div>
+    
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-item">
+            <i class="fas fa-plug"></i>
+            <span>Connected to Fortnite</span>
+        </div>
+        <div class="status-item">
+            <i class="fas fa-shield-alt"></i>
+            <span>Undetected</span>
+        </div>
+        <div class="status-item">
+            <i class="fas fa-sync-alt"></i>
+            <span>v2.4.1</span>
+        </div>
+    </div>
 
     <script>
         // Enhanced mock database with 20+ items in each category
