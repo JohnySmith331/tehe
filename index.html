@@ -399,7 +399,7 @@
     </div>
 
     <script>
-        // Enhanced mock database with 20+ items in each category
+        // Enhanced mock database with 40+ items in each category (doubled from original)
         const fortniteItems = {
             outfits: [
                 {id:"cid_001", name:"Renegade Raider", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_001/icon.png", release:"Season 1", price:1200},
@@ -421,7 +421,28 @@
                 {id:"cid_017", name:"Superman", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_017/icon.png", release:"Season 17", price:2000},
                 {id:"cid_018", name:"Carnage", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_018/icon.png", release:"Season 18", price:2000},
                 {id:"cid_019", name:"Spider-Man", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_019/icon.png", release:"Season 19", price:2000},
-                {id:"cid_020", name:"The Rock", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_020/icon.png", release:"Season 20", price:2000}
+                {id:"cid_020", name:"The Rock", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_020/icon.png", release:"Season 20", price:2000},
+                // Additional outfits (doubled count)
+                {id:"cid_021", name:"Renegade Shadow", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_021/icon.png", release:"Season 1", price:1200},
+                {id:"cid_022", name:"Skull Ranger", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/cid_022/icon.png", release:"Season 1", price:1500},
+                {id:"cid_023", name:"Red Knight", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_023/icon.png", release:"Season 2", price:2000},
+                {id:"cid_024", name:"Omega Knight", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_024/icon.png", release:"Season 4", price:0},
+                {id:"cid_025", name:"Catalyst", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_025/icon.png", release:"Season 5", price:0},
+                {id:"cid_026", name:"Ragnarok Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_026/icon.png", release:"Season 5", price:0},
+                {id:"cid_027", name:"Fishstick Gold", rarity:"rare", image:"https://fortnite-api.com/images/cosmetics/br/cid_027/icon.png", release:"Season 7", price:800},
+                {id:"cid_028", name:"Peely Bone", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/cid_028/icon.png", release:"Season 8", price:1500},
+                {id:"cid_029", name:"Midas Rex", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_029/icon.png", release:"Season 12", price:2000},
+                {id:"cid_030", name:"Meowscles Shadow", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/cid_030/icon.png", release:"Season 12", price:1500},
+                {id:"cid_031", name:"Jules Shadow", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_031/icon.png", release:"Season 13", price:2000},
+                {id:"cid_032", name:"Iron Man Zero", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_032/icon.png", release:"Season 14", price:0},
+                {id:"cid_033", name:"Mandalorian Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_033/icon.png", release:"Season 15", price:0},
+                {id:"cid_034", name:"Lara Croft Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_034/icon.png", release:"Season 16", price:2000},
+                {id:"cid_035", name:"Neymar Jr. Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_035/icon.png", release:"Season 16", price:0},
+                {id:"cid_036", name:"Guggimon Shadow", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/cid_036/icon.png", release:"Season 17", price:1500},
+                {id:"cid_037", name:"Superman Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_037/icon.png", release:"Season 17", price:2000},
+                {id:"cid_038", name:"Carnage Symbiote", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_038/icon.png", release:"Season 18", price:2000},
+                {id:"cid_039", name:"Spider-Man Symbiote", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_039/icon.png", release:"Season 19", price:2000},
+                {id:"cid_040", name:"The Rock Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/cid_040/icon.png", release:"Season 20", price:2000}
             ],
             backblings: [
                 {id:"bid_001", name:"Black Shield", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/bid_001/icon.png", release:"Season 2", price:800},
@@ -443,7 +464,28 @@
                 {id:"bid_017", name:"Goku's Power Pole", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/bid_017/icon.png", release:"Season 20", price:1200},
                 {id:"bid_018", name:"Vegeta's Scouter", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/bid_018/icon.png", release:"Season 20", price:800},
                 {id:"bid_019", name:"Naruto's Scroll", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/bid_019/icon.png", release:"Season 21", price:1200},
-                {id:"bid_020", name:"Sasuke's Sword", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/bid_020/icon.png", release:"Season 21", price:1200}
+                {id:"bid_020", name:"Sasuke's Sword", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/bid_020/icon.png", release:"Season 21", price:1200},
+                // Additional backblings (doubled count)
+                {id:"bid_021", name:"Black Shield Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/bid_021/icon.png", release:"Season 2", price:800},
+                {id:"bid_022", name:"Cuddle Bow Dark", rarity:"rare", image:"https://fortnite-api.com/images/cosmetics/br/bid_022/icon.png", release:"Season 3", price:500},
+                {id:"bid_023", name:"Brite Bag Dark", rarity:"uncommon", image:"https://fortnite-api.com/images/cosmetics/br/bid_023/icon.png", release:"Season 4", price:300},
+                {id:"bid_024", name:"Iron Cage Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/bid_024/icon.png", release:"Season 5", price:1200},
+                {id:"bid_025", name:"Frozen Shroud Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/bid_025/icon.png", release:"Season 7", price:800},
+                {id:"bid_026", name:"Pizza Box Dark", rarity:"rare", image:"https://fortnite-api.com/images/cosmetics/br/bid_026/icon.png", release:"Season 8", price:500},
+                {id:"bid_027", name:"Dragon's Claw Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/bid_027/icon.png", release:"Season 9", price:1200},
+                {id:"bid_028", name:"Ghost Portal Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/bid_028/icon.png", release:"Season X", price:800},
+                {id:"bid_029", name:"Groot's Roots Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/bid_029/icon.png", release:"Season 14", price:1200},
+                {id:"bid_030", name:"Baby Yoda Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/bid_030/icon.png", release:"Season 15", price:800},
+                {id:"bid_031", name:"Mando's Jetpack Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/bid_031/icon.png", release:"Season 15", price:1200},
+                {id:"bid_032", name:"Lara's Backpack Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/bid_032/icon.png", release:"Season 16", price:800},
+                {id:"bid_033", name:"Batman Cape Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/bid_033/icon.png", release:"Season 17", price:1200},
+                {id:"bid_034", name:"Symbiote Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/bid_034/icon.png", release:"Season 18", price:800},
+                {id:"bid_035", name:"Spider-Web Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/bid_035/icon.png", release:"Season 19", price:1200},
+                {id:"bid_036", name:"Foundation's Cape Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/bid_036/icon.png", release:"Season 19", price:1200},
+                {id:"bid_037", name:"Goku's Power Pole Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/bid_037/icon.png", release:"Season 20", price:1200},
+                {id:"bid_038", name:"Vegeta's Scouter Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/bid_038/icon.png", release:"Season 20", price:800},
+                {id:"bid_039", name:"Naruto's Scroll Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/bid_039/icon.png", release:"Season 21", price:1200},
+                {id:"bid_040", name:"Sasuke's Sword Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/bid_040/icon.png", release:"Season 21", price:1200}
             ],
             pickaxes: [
                 {id:"pick_001", name:"Reaper", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_001/icon.png", release:"Season 1", price:1500},
@@ -465,7 +507,28 @@
                 {id:"pick_017", name:"The Foundation's Hammer", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_017/icon.png", release:"Season 19", price:1500},
                 {id:"pick_018", name:"Goku's Power Pole", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_018/icon.png", release:"Season 20", price:1500},
                 {id:"pick_019", name:"Vegeta's Scouter", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/pick_019/icon.png", release:"Season 20", price:800},
-                {id:"pick_020", name:"Naruto's Kunai", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_020/icon.png", release:"Season 21", price:1500}
+                {id:"pick_020", name:"Naruto's Kunai", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_020/icon.png", release:"Season 21", price:1500},
+                // Additional pickaxes (doubled count)
+                {id:"pick_021", name:"Reaper Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_021/icon.png", release:"Season 1", price:1500},
+                {id:"pick_022", name:"Rainbow Smash Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/pick_022/icon.png", release:"Season 3", price:800},
+                {id:"pick_023", name:"AC/DC Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_023/icon.png", release:"Season 5", price:1500},
+                {id:"pick_024", name:"Studded Axe Dark", rarity:"uncommon", image:"https://fortnite-api.com/images/cosmetics/br/pick_024/icon.png", release:"Season 6", price:500},
+                {id:"pick_025", name:"Ice Breaker Dark", rarity:"rare", image:"https://fortnite-api.com/images/cosmetics/br/pick_025/icon.png", release:"Season 7", price:800},
+                {id:"pick_026", name:"Vision Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_026/icon.png", release:"Season 9", price:1500},
+                {id:"pick_027", name:"Star Wand Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/pick_027/icon.png", release:"Season X", price:800},
+                {id:"pick_028", name:"Midas' Drum Gun Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_028/icon.png", release:"Season 12", price:1500},
+                {id:"pick_029", name:"Wolverine's Claws Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_029/icon.png", release:"Season 14", price:1500},
+                {id:"pick_030", name:"Iron Man's Repulsors Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_030/icon.png", release:"Season 14", price:1500},
+                {id:"pick_031", name:"Mandalorian's Beskar Spear Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_031/icon.png", release:"Season 15", price:1500},
+                {id:"pick_032", name:"Lara's Dual Pistols Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/pick_032/icon.png", release:"Season 16", price:800},
+                {id:"pick_033", name:"Batman's Batarangs Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_033/icon.png", release:"Season 17", price:1500},
+                {id:"pick_034", name:"Superman's Fists Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_034/icon.png", release:"Season 17", price:1500},
+                {id:"pick_035", name:"Carnage's Tendrils Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_035/icon.png", release:"Season 18", price:1500},
+                {id:"pick_036", name:"Spider-Man's Web-Shooters Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_036/icon.png", release:"Season 19", price:1500},
+                {id:"pick_037", name:"The Foundation's Hammer Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_037/icon.png", release:"Season 19", price:1500},
+                {id:"pick_038", name:"Goku's Power Pole Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_038/icon.png", release:"Season 20", price:1500},
+                {id:"pick_039", name:"Vegeta's Scouter Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/pick_039/icon.png", release:"Season 20", price:800},
+                {id:"pick_040", name:"Naruto's Kunai Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/pick_040/icon.png", release:"Season 21", price:1500}
             ],
             gliders: [
                 {id:"glider_001", name:"Mako", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_001/icon.png", release:"Season 1", price:1500},
@@ -487,7 +550,28 @@
                 {id:"glider_017", name:"The Foundation's Drop Pod", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_017/icon.png", release:"Season 19", price:1500},
                 {id:"glider_018", name:"Goku's Flying Nimbus", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_018/icon.png", release:"Season 20", price:1500},
                 {id:"glider_019", name:"Vegeta's Scouter Hover", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/glider_019/icon.png", release:"Season 20", price:1200},
-                {id:"glider_020", name:"Naruto's Toad", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_020/icon.png", release:"Season 21", price:1500}
+                {id:"glider_020", name:"Naruto's Toad", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_020/icon.png", release:"Season 21", price:1500},
+                // Additional gliders (doubled count)
+                {id:"glider_021", name:"Mako Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_021/icon.png", release:"Season 1", price:1500},
+                {id:"glider_022", name:"Rainbow Rider Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/glider_022/icon.png", release:"Season 3", price:1200},
+                {id:"glider_023", name:"Laser Chomp Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_023/icon.png", release:"Season 5", price:1500},
+                {id:"glider_024", name:"Frostwing Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_024/icon.png", release:"Season 7", price:1500},
+                {id:"glider_025", name:"One Shot Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/glider_025/icon.png", release:"Season 8", price:1200},
+                {id:"glider_026", name:"Storm King's Wrath Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_026/icon.png", release:"Season 10", price:1500},
+                {id:"glider_027", name:"Mecha Team Leader Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_027/icon.png", release:"Season X", price:1500},
+                {id:"glider_028", name:"Midas' Shadow Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_028/icon.png", release:"Season 12", price:1500},
+                {id:"glider_029", name:"Silver Surfer's Board Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_029/icon.png", release:"Season 14", price:1500},
+                {id:"glider_030", name:"Iron Man's Jet Boots Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_030/icon.png", release:"Season 14", price:1500},
+                {id:"glider_031", name:"Mandalorian's Jetpack Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_031/icon.png", release:"Season 15", price:1500},
+                {id:"glider_032", name:"Lara's Parachute Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/glider_032/icon.png", release:"Season 16", price:1200},
+                {id:"glider_033", name:"Batman's Cape Glide Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_033/icon.png", release:"Season 17", price:1500},
+                {id:"glider_034", name:"Superman's Flight Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_034/icon.png", release:"Season 17", price:1500},
+                {id:"glider_035", name:"Carnage's Symbiote Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_035/icon.png", release:"Season 18", price:1500},
+                {id:"glider_036", name:"Spider-Man's Web Wings Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_036/icon.png", release:"Season 19", price:1500},
+                {id:"glider_037", name:"The Foundation's Drop Pod Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_037/icon.png", release:"Season 19", price:1500},
+                {id:"glider_038", name:"Goku's Flying Nimbus Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_038/icon.png", release:"Season 20", price:1500},
+                {id:"glider_039", name:"Vegeta's Scouter Hover Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/glider_039/icon.png", release:"Season 20", price:1200},
+                {id:"glider_040", name:"Naruto's Toad Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/glider_040/icon.png", release:"Season 21", price:1500}
             ],
             emotes: [
                 {id:"eid_001", name:"Floss", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/eid_001/icon.png", release:"Season 2", price:800},
@@ -509,7 +593,28 @@
                 {id:"eid_017", name:"Carnage's Tendril Slash", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/eid_017/icon.png", release:"Season 18", price:1200},
                 {id:"eid_018", name:"Spider-Man's Web Swing", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/eid_018/icon.png", release:"Season 19", price:1200},
                 {id:"eid_019", name:"The Rock's Eyebrow", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/eid_019/icon.png", release:"Season 20", price:1200},
-                {id:"eid_020", name:"Goku's Kamehameha", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/eid_020/icon.png", release:"Season 20", price:1200}
+                {id:"eid_020", name:"Goku's Kamehameha", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/eid_020/icon.png", release:"Season 20", price:1200},
+                // Additional emotes (doubled count)
+                {id:"eid_021", name:"Floss Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/eid_021/icon.png", release:"Season 2", price:800},
+                {id:"eid_022", name:"Orange Justice Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/eid_022/icon.png", release:"Season 4", price:800},
+                {id:"eid_023", name:"Take the L Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/eid_023/icon.png", release:"Season 3", price:800},
+                {id:"eid_024", name:"Dab Dark", rarity:"rare", image:"https://fortnite-api.com/images/cosmetics/br/eid_024/icon.png", release:"Season 5", price:500},
+                {id:"eid_025", name:"Electro Shuffle Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/eid_025/icon.png", release:"Season 6", price:800},
+                {id:"eid_026", name:"Hype Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/eid_026/icon.png", release:"Season 7", price:800},
+                {id:"eid_027", name:"The Worm Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/eid_027/icon.png", release:"Season 8", price:800},
+                {id:"eid_028", name:"Scenario Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/eid_028/icon.png", release:"Season 9", price:1200},
+                {id:"eid_029", name:"Infinite Dab Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/eid_029/icon.png", release:"Season X", price:1200},
+                {id:"eid_030", name:"Never Gonna Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/eid_030/icon.png", release:"Season 12", price:800},
+                {id:"eid_031", name:"Astronomical Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/eid_031/icon.png", release:"Season 13", price:1200},
+                {id:"eid_032", name:"Iron Man's Repulsor Blast Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/eid_032/icon.png", release:"Season 14", price:1200},
+                {id:"eid_033", name:"Mandalorian's Whistle Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/eid_033/icon.png", release:"Season 15", price:800},
+                {id:"eid_034", name:"Lara's Dual Pistols Dark", rarity:"epic", image:"https://fortnite-api.com/images/cosmetics/br/eid_034/icon.png", release:"Season 16", price:800},
+                {id:"eid_035", name:"Batman's Batarang Toss Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/eid_035/icon.png", release:"Season 17", price:1200},
+                {id:"eid_036", name:"Superman's Heat Vision Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/eid_036/icon.png", release:"Season 17", price:1200},
+                {id:"eid_037", name:"Carnage's Tendril Slash Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/eid_037/icon.png", release:"Season 18", price:1200},
+                {id:"eid_038", name:"Spider-Man's Web Swing Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/eid_038/icon.png", release:"Season 19", price:1200},
+                {id:"eid_039", name:"The Rock's Eyebrow Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/eid_039/icon.png", release:"Season 20", price:1200},
+                {id:"eid_040", name:"Goku's Kamehameha Dark", rarity:"legendary", image:"https://fortnite-api.com/images/cosmetics/br/eid_040/icon.png", release:"Season 20", price:1200}
             ]
         };
 
