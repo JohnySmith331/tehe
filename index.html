@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOOKZIE SWAPPER UI</title>
+    <title>MOOKZIE SWAPPER</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -31,12 +31,50 @@
             background-color: var(--black);
             color: white;
             overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
+        /* Title Bar */
+        .title-bar {
+            height: 30px;
+            background-color: var(--dark-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        
+        .title {
+            color: var(--neon-green);
+            font-weight: bold;
+        }
+        
+        .window-controls {
+            display: flex;
+        }
+        
+        .window-controls button {
+            background: none;
+            border: none;
+            color: white;
+            padding: 5px 15px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        .window-controls button:hover {
+            background-color: var(--medium-gray);
+        }
+        
+        /* Main App Container */
         .app-container {
             display: grid;
             grid-template-columns: 250px 1fr 300px;
-            height: 100vh;
+            height: calc(100vh - 30px);
         }
         
         /* Sidebar */
@@ -44,6 +82,7 @@
             background-color: var(--dark-gray);
             border-right: 1px solid var(--medium-gray);
             padding: 20px;
+            overflow-y: auto;
         }
         
         .logo {
@@ -76,6 +115,29 @@
         .main-content {
             padding: 20px;
             overflow-y: auto;
+            background-color: var(--black);
+        }
+        
+        .search-bar {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 10px 15px;
+            background-color: var(--dark-gray);
+            border: 1px solid var(--medium-gray);
+            border-radius: 4px;
+            color: white;
+        }
+        
+        .search-bar i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--neon-green);
         }
         
         .skin-grid {
@@ -106,6 +168,13 @@
             align-items: center;
             justify-content: center;
             color: var(--neon-green);
+            position: relative;
+        }
+        
+        .skin-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         
         .skin-info {
@@ -115,10 +184,14 @@
         .skin-name {
             font-weight: bold;
             margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .skin-rarity {
             font-size: 0.8rem;
+            text-transform: capitalize;
         }
         
         /* Preview Panel */
@@ -139,6 +212,16 @@
             justify-content: center;
             margin-bottom: 20px;
             color: var(--neon-green);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .preview-character {
+            width: 100%;
+            height: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
         }
         
         .apply-btn {
@@ -151,11 +234,21 @@
             cursor: pointer;
             font-size: 1rem;
             transition: all 0.2s;
+            margin-bottom: 10px;
         }
         
         .apply-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 255, 76, 0.3);
+        }
+        
+        .preview-info {
+            margin-bottom: 20px;
+        }
+        
+        .preview-title {
+            color: var(--neon-green);
+            margin-bottom: 10px;
         }
         
         /* Rarity Colors */
@@ -164,9 +257,59 @@
         .rare { color: var(--rarity-rare); }
         .epic { color: var(--rarity-epic); }
         .legendary { color: var(--rarity-legendary); }
+        
+        /* Status Bar */
+        .status-bar {
+            background-color: var(--dark-gray);
+            border-top: 1px solid var(--medium-gray);
+            padding: 8px 20px;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .status-item i {
+            color: var(--neon-green);
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .app-container {
+                grid-template-columns: 200px 1fr 250px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .app-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto 1fr auto;
+            }
+            
+            .preview-panel {
+                border-left: none;
+                border-top: 1px solid var(--medium-gray);
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Title Bar -->
+    <div class="title-bar">
+        <div class="title">MOOKZIE SWAPPER</div>
+        <div class="window-controls">
+            <button id="minimize"><i class="fas fa-window-minimize"></i></button>
+            <button id="maximize"><i class="fas fa-window-maximize"></i></button>
+            <button id="close"><i class="fas fa-times"></i></button>
+        </div>
+    </div>
+    
+    <!-- Main App Container -->
     <div class="app-container">
         <!-- Sidebar -->
         <div class="sidebar">
@@ -180,144 +323,246 @@
             <div class="category">Wraps</div>
             <div class="category">Recent</div>
             <div class="category">Favorites</div>
+            
+            <div style="margin-top: 30px;">
+                <div class="category"><i class="fas fa-cog"></i> Settings</div>
+                <div class="category"><i class="fas fa-question-circle"></i> Help</div>
+                <div class="category"><i class="fas fa-info-circle"></i> About</div>
+            </div>
         </div>
         
         <!-- Main Content -->
         <div class="main-content">
-            <div class="skin-grid">
-                <!-- Skin Cards -->
-                <div class="skin-card">
-                    <div class="skin-image">
-                        <i class="fas fa-user-ninja fa-3x"></i>
-                    </div>
-                    <div class="skin-info">
-                        <div class="skin-name">Renegade Raider</div>
-                        <div class="skin-rarity legendary">Legendary</div>
-                    </div>
-                </div>
-                
-                <div class="skin-card">
-                    <div class="skin-image">
-                        <i class="fas fa-skull fa-3x"></i>
-                    </div>
-                    <div class="skin-info">
-                        <div class="skin-name">Skull Trooper</div>
-                        <div class="skin-rarity epic">Epic</div>
-                    </div>
-                </div>
-                
-                <div class="skin-card">
-                    <div class="skin-image">
-                        <i class="fas fa-robot fa-3x"></i>
-                    </div>
-                    <div class="skin-info">
-                        <div class="skin-name">Omega</div>
-                        <div class="skin-rarity legendary">Legendary</div>
-                    </div>
-                </div>
-                
-                <div class="skin-card">
-                    <div class="skin-image">
-                        <i class="fas fa-fish fa-3x"></i>
-                    </div>
-                    <div class="skin-info">
-                        <div class="skin-name">Fishstick</div>
-                        <div class="skin-rarity rare">Rare</div>
-                    </div>
-                </div>
-                
-                <div class="skin-card">
-                    <div class="skin-image">
-                        <i class="fas fa-meteor fa-3x"></i>
-                    </div>
-                    <div class="skin-info">
-                        <div class="skin-name">Dark Voyager</div>
-                        <div class="skin-rarity epic">Epic</div>
-                    </div>
-                </div>
-                
-                <div class="skin-card">
-                    <div class="skin-image">
-                        <i class="fas fa-crown fa-3x"></i>
-                    </div>
-                    <div class="skin-info">
-                        <div class="skin-name">Royale Knight</div>
-                        <div class="skin-rarity uncommon">Uncommon</div>
-                    </div>
-                </div>
-                
-                <div class="skin-card">
-                    <div class="skin-image">
-                        <i class="fas fa-ghost fa-3x"></i>
-                    </div>
-                    <div class="skin-info">
-                        <div class="skin-name">Ghoul Trooper</div>
-                        <div class="skin-rarity epic">Epic</div>
-                    </div>
-                </div>
-                
-                <div class="skin-card">
-                    <div class="skin-image">
-                        <i class="fas fa-space-shuttle fa-3x"></i>
-                    </div>
-                    <div class="skin-info">
-                        <div class="skin-name">Astro Jack</div>
-                        <div class="skin-rarity legendary">Legendary</div>
-                    </div>
-                </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search skins...">
+                <i class="fas fa-search"></i>
+            </div>
+            
+            <div class="skin-grid" id="skinGrid">
+                <!-- Skin cards will be loaded here by JavaScript -->
             </div>
         </div>
         
         <!-- Preview Panel -->
         <div class="preview-panel">
-            <h3 style="margin-bottom: 20px; color: var(--neon-green);">SKIN PREVIEW</h3>
+            <h3 class="preview-title">SKIN PREVIEW</h3>
             <div class="preview-container">
-                <i class="fas fa-user-astronaut fa-5x"></i>
+                <div class="preview-character" id="previewCharacter">
+                    <i class="fas fa-user-astronaut fa-5x"></i>
+                </div>
             </div>
-            <div style="margin-bottom: 20px;">
-                <h4 style="color: var(--neon-green);">Selected Skin:</h4>
-                <p>Renegade Raider</p>
-                <p class="legendary">Legendary</p>
+            
+            <div class="preview-info">
+                <h4 class="preview-title">Selected Skin:</h4>
+                <p id="previewSkinName">None selected</p>
+                <p class="skin-rarity" id="previewSkinRarity">Select a skin to preview</p>
             </div>
-            <button class="apply-btn">APPLY SKIN</button>
+            
+            <button class="apply-btn" id="applyBtn">APPLY SKIN</button>
+            <button class="apply-btn btn-outline" id="favoriteBtn">
+                <i class="far fa-heart"></i> FAVORITE
+            </button>
+        </div>
+    </div>
+    
+    <!-- Status Bar -->
+    <div class="status-bar">
+        <div class="status-item">
+            <i class="fas fa-plug"></i>
+            <span>Connected to Fortnite</span>
+        </div>
+        <div class="status-item">
+            <i class="fas fa-shield-alt"></i>
+            <span>Undetected</span>
+        </div>
+        <div class="status-item">
+            <i class="fas fa-sync-alt"></i>
+            <span>v2.4.1</span>
         </div>
     </div>
 
     <script>
-        // Simple UI interactions
-        document.querySelectorAll('.skin-card').forEach(card => {
-            card.addEventListener('click', function() {
-                // Remove active class from all cards
-                document.querySelectorAll('.skin-card').forEach(c => {
-                    c.style.borderColor = 'var(--medium-gray)';
-                });
+        // Mock database of Fortnite items
+        const fortniteItems = {
+            outfits: [
+                {
+                    id: "cid_001",
+                    name: "Renegade Raider",
+                    rarity: "legendary",
+                    image: "https://via.placeholder.com/150x150/333333/00ff4c?text=Renegade+Raider",
+                    releaseDate: "2017-10-26",
+                    price: 1200
+                },
+                {
+                    id: "cid_002",
+                    name: "Skull Trooper",
+                    rarity: "epic",
+                    image: "https://via.placeholder.com/150x150/333333/00ff4c?text=Skull+Trooper",
+                    releaseDate: "2017-10-31",
+                    price: 1500
+                },
+                {
+                    id: "cid_003",
+                    name: "Black Knight",
+                    rarity: "legendary",
+                    image: "https://via.placeholder.com/150x150/333333/00ff4c?text=Black+Knight",
+                    releaseDate: "2018-02-20",
+                    price: 2000
+                },
+                {
+                    id: "cid_004",
+                    name: "Omega",
+                    rarity: "legendary",
+                    image: "https://via.placeholder.com/150x150/333333/00ff4c?text=Omega",
+                    releaseDate: "2018-05-01",
+                    price: 0
+                },
+                {
+                    id: "cid_005",
+                    name: "Fishstick",
+                    rarity: "rare",
+                    image: "https://via.placeholder.com/150x150/333333/00ff4c?text=Fishstick",
+                    releaseDate: "2019-02-14",
+                    price: 800
+                },
+                {
+                    id: "cid_006",
+                    name: "Peely",
+                    rarity: "epic",
+                    image: "https://via.placeholder.com/150x150/333333/00ff4c?text=Peely",
+                    releaseDate: "2019-05-09",
+                    price: 1500
+                },
+                {
+                    id: "cid_007",
+                    name: "Midas",
+                    rarity: "legendary",
+                    image: "https://via.placeholder.com/150x150/333333/00ff4c?text=Midas",
+                    releaseDate: "2020-02-20",
+                    price: 2000
+                },
+                {
+                    id: "cid_008",
+                    name: "Meowscles",
+                    rarity: "epic",
+                    image: "https://via.placeholder.com/150x150/333333/00ff4c?text=Meowscles",
+                    releaseDate: "2020-03-17",
+                    price: 1500
+                }
+            ],
+            backblings: [
+                // Backblings would go here
+            ],
+            pickaxes: [
+                // Pickaxes would go here
+            ]
+        };
+
+        // Current selected skin
+        let selectedSkin = null;
+
+        // Load items into the grid
+        function loadItems(category = 'outfits') {
+            const grid = document.getElementById('skinGrid');
+            grid.innerHTML = '';
+            
+            fortniteItems[category].forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'skin-card';
+                card.dataset.id = item.id;
+                card.innerHTML = `
+                    <div class="skin-image">
+                        <img src="${item.image}" alt="${item.name}" onerror="this.onerror=null; this.src='https://via.placeholder.com/150x150/333333/00ff4c?text=Image+Not+Found'">
+                    </div>
+                    <div class="skin-info">
+                        <div class="skin-name">${item.name}</div>
+                        <div class="skin-rarity ${item.rarity}">${item.rarity}</div>
+                    </div>
+                `;
                 
-                // Add active state to clicked card
-                this.style.borderColor = 'var(--neon-green)';
-                
-                // Update preview (in a real app this would show the actual skin)
-                const skinName = this.querySelector('.skin-name').textContent;
-                const skinRarity = this.querySelector('.skin-rarity').textContent;
-                const previewPanel = document.querySelector('.preview-panel');
-                
-                previewPanel.querySelector('p:nth-of-type(1)').textContent = skinName;
-                previewPanel.querySelector('p:nth-of-type(2)').textContent = skinRarity;
-                previewPanel.querySelector('p:nth-of-type(2)').className = 'skin-rarity ' + this.querySelector('.skin-rarity').className.split(' ')[1];
+                card.addEventListener('click', () => selectSkin(item));
+                grid.appendChild(card);
             });
+        }
+
+        // Select a skin
+        function selectSkin(skin) {
+            selectedSkin = skin;
+            
+            // Update preview
+            document.getElementById('previewSkinName').textContent = skin.name;
+            const rarityElement = document.getElementById('previewSkinRarity');
+            rarityElement.textContent = skin.rarity;
+            rarityElement.className = `skin-rarity ${skin.rarity}`;
+            
+            // Update preview image
+            const previewCharacter = document.getElementById('previewCharacter');
+            previewCharacter.innerHTML = `<img src="${skin.image}" alt="${skin.name}" style="width:100%;height:100%;object-fit:contain">`;
+            
+            // Highlight selected card
+            document.querySelectorAll('.skin-card').forEach(card => {
+                card.style.borderColor = card.dataset.id === skin.id ? 'var(--neon-green)' : 'var(--medium-gray)';
+            });
+        }
+
+        // Apply skin button
+        document.getElementById('applyBtn').addEventListener('click', () => {
+            if (selectedSkin) {
+                alert(`This is a UI demo only.\n\nWould apply: ${selectedSkin.name}`);
+            } else {
+                alert('Please select a skin first');
+            }
         });
-        
-        document.querySelector('.apply-btn').addEventListener('click', function() {
-            alert('This is a UI demo only. No skins will be applied to your game.');
+
+        // Favorite button
+        document.getElementById('favoriteBtn').addEventListener('click', () => {
+            if (selectedSkin) {
+                const btn = document.getElementById('favoriteBtn');
+                const isFavorite = btn.querySelector('i').classList.contains('fas');
+                
+                if (isFavorite) {
+                    btn.innerHTML = '<i class="far fa-heart"></i> FAVORITE';
+                } else {
+                    btn.innerHTML = '<i class="fas fa-heart"></i> FAVORITED';
+                }
+                
+                alert(`${isFavorite ? 'Removed from' : 'Added to'} favorites: ${selectedSkin.name}`);
+            } else {
+                alert('Please select a skin first');
+            }
         });
-        
+
+        // Category selection
         document.querySelectorAll('.category').forEach(cat => {
             cat.addEventListener('click', function() {
                 document.querySelectorAll('.category').forEach(c => {
                     c.classList.remove('active');
                 });
                 this.classList.add('active');
+                
+                // In a real app, this would load different categories
+                loadItems(this.textContent.trim().toLowerCase().replace(' ', ''));
             });
         });
+
+        // Window controls (mock)
+        document.getElementById('minimize').addEventListener('click', () => {
+            alert('Window would minimize');
+        });
+        
+        document.getElementById('maximize').addEventListener('click', () => {
+            alert('Window would maximize');
+        });
+        
+        document.getElementById('close').addEventListener('click', () => {
+            if (confirm('Close Mookzie Swapper?')) {
+                // In a real Electron app, this would close the window
+                alert('App would close');
+            }
+        });
+
+        // Initial load
+        loadItems();
     </script>
 </body>
 </html>
